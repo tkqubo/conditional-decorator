@@ -1,0 +1,22 @@
+{
+  "name": "conditional-decorator",
+  "version": "0.0.1",
+  "description": "Decorator's decorator for applying it on the target conditionally",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkqubo/conditional-decorator.git"
+  },
+  "keywords": [
+    "JavaScript"
+  ],
+  "author": "tkqubo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tkqubo/conditional-decorator/issues"
+  },
+  "homepage": "https://github.com/tkqubo/conditional-decorator#readme"
+}
