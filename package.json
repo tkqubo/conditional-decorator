@@ -4,7 +4,8 @@
   "description": "Decorator's decorator for applying it on the target conditionally",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers ts:espower-typescript/guess test/*.spec.ts",
+    "test:watch": "mocha --compilers ts:espower-typescript/guess test/*.spec.ts -w"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,10 @@
   "bugs": {
     "url": "https://github.com/tkqubo/conditional-decorator/issues"
   },
-  "homepage": "https://github.com/tkqubo/conditional-decorator#readme"
+  "homepage": "https://github.com/tkqubo/conditional-decorator#readme",
+  "devDependencies": {
+    "espower-typescript": "^1.0.0",
+    "mocha": "^2.3.3",
+    "power-assert": "^1.0.1"
+  }
 }
