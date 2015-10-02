@@ -4,8 +4,11 @@
   "description": "Decorator's decorator for applying it on the target conditionally",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers ts:espower-typescript/guess test/*.spec.ts",
-    "test:watch": "mocha --compilers ts:espower-typescript/guess test/*.spec.ts -w"
+		"build": "tsc",
+		"start": "npm run build",
+    "test": "npm run build && mocha --compilers ts:espower-typescript/guess test/*.spec.ts",
+    "test:watch": "npm run build && mocha --compilers ts:espower-typescript/guess test/*.spec.ts -w",
+		"prepublish": "npm run build"
   },
   "repository": {
     "type": "git",

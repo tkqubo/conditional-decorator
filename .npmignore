@@ -1,0 +1,7 @@
+.git*
+src
+test
+typings
+.travis.yml
+tsconfig.json
+tsd.json

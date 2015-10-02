@@ -1,5 +1,5 @@
 import * as assert from 'power-assert';
-import { index } from '../index';
+import { index } from '../src/index';
 
 describe('index', () => {
     it('()', () => {
