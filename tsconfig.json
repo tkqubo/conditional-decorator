@@ -4,13 +4,13 @@
     "target": "es5",
     "noImplicitAny": true,
     "experimentalDecorators": true,
-    "outDir": "dist",
+    "outDir": ".",
     "rootDir": "src",
-    "declaration": true,
-    "sourceMap": true
+    "declaration": true
   },
   "exclude": [
     "node_modules",
+    "index.d.ts",
     "test"
   ]
 }
