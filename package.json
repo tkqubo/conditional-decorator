@@ -4,7 +4,8 @@
   "description": "Decorator's decorator for applying it on the target conditionally",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc && cp src/*.js dist/ && mv src/*.d.ts dist/",
+    "clean": "rm -rfv dist && rm -rfv src/*.js",
+    "build": "npm run clean && tsc && mkdir -pv dist && cp -v src/*.js dist/ && mv -v src/*.d.ts dist/",
     "start": "npm run build",
     "test": "npm run build && mocha --compilers ts:espower-typescript/guess test/*.spec.ts",
     "test:watch": "npm run build && mocha --compilers ts:espower-typescript/guess test/*.spec.ts -w",

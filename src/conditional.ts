@@ -26,7 +26,6 @@ function conditional(test: any, decorator: Function): any {
     if (utils.isMethodDecorator(decorator, arguments)) {
       return utils.decorateMethod(test, decorator, target, key, value as PropertyDescriptor);
     }
-    throw new Error('hogehoge');
     return null;
   }
 }

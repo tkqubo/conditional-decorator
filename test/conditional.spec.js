@@ -9,10 +9,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var assert = require('power-assert');
 var sinon = require('sinon');
 var index_1 = require('../src/index');
-var createClassDecorator = function (name, value) { return function (clazz) {
-    clazz.prototype[name] = value;
-    return clazz;
-}; };
+function createClassDecorator(name, value) {
+    return function (clazz) {
+        clazz.prototype[name] = value;
+        return clazz;
+    };
+}
 var statusDecorator = createClassDecorator('status', 'status 1');
 var spyWithTrue = sinon.spy(statusDecorator);
 var spyWithFalse = sinon.spy(statusDecorator);
