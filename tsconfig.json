@@ -10,7 +10,6 @@
   },
   "exclude": [
     "node_modules",
-    "index.d.ts",
-    "test"
+    "index.d.ts"
   ]
 }

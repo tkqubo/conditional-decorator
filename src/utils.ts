@@ -6,8 +6,8 @@ export enum DecoratorType {
   None,
 }
 
-export function getDecoratorTypeFromArguments(target: Object, key: string|symbol, value: any): DecoratorType {
-  var kind: string = typeof (arguments.length == 1 ? value = target : value);
+export function getDecoratorTypeFromArguments(args: IArguments): DecoratorType {
+  var kind: string = typeof (args.length == 1 ? args[0]: args[2]);
   switch (kind) {
     case "function":
       return DecoratorType.ClassDecorator;
@@ -21,20 +21,20 @@ export function getDecoratorTypeFromArguments(target: Object, key: string|symbol
   return DecoratorType.None;
 }
 
-export function isClassDecorator(decorator: Function, target: Object, key: string|symbol, value: any): decorator is ClassDecorator {
-  return getDecoratorTypeFromArguments(target, key, value) == DecoratorType.ClassDecorator;
+export function isClassDecorator(decorator: Function, args: IArguments): decorator is ClassDecorator {
+  return getDecoratorTypeFromArguments(args) == DecoratorType.ClassDecorator;
 }
 
-export function isParameterDecorator(decorator: Function, target: Object, key: string|symbol, value: any): decorator is ParameterDecorator {
-  return getDecoratorTypeFromArguments(target, key, value) == DecoratorType.ParameterDecorator;
+export function isParameterDecorator(decorator: Function, args: IArguments): decorator is ParameterDecorator {
+  return getDecoratorTypeFromArguments(args) == DecoratorType.ParameterDecorator;
 }
 
-export function isPropertyDecorator(decorator: Function, target: Object, key: string|symbol, value: any): decorator is PropertyDecorator {
-  return getDecoratorTypeFromArguments(target, key, value) == DecoratorType.PropertyDecorator;
+export function isPropertyDecorator(decorator: Function, args: IArguments): decorator is PropertyDecorator {
+  return getDecoratorTypeFromArguments(args) == DecoratorType.PropertyDecorator;
 }
 
-export function isMethodDecorator(decorator: Function, target: Object, key: string|symbol, value: any): decorator is MethodDecorator {
-  return getDecoratorTypeFromArguments(target, key, value) == DecoratorType.MethodDecorator;
+export function isMethodDecorator(decorator: Function, args: IArguments): decorator is MethodDecorator {
+  return getDecoratorTypeFromArguments(args) == DecoratorType.MethodDecorator;
 }
 
 export function decorateClass(test: any, decorator: ClassDecorator, clazz: Function): Function|void {

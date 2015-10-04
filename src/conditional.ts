@@ -14,18 +14,19 @@ function conditional(test: (target?: Object, key?: string|symbol, desc?: Propert
 
 function conditional(test: any, decorator: Function): any {
   return function (target: Object, key: string|symbol, value: any): any {
-    if (utils.isClassDecorator(decorator, target, key, value)) {
+    if (utils.isClassDecorator(decorator, arguments)) {
       return utils.decorateClass(test, decorator, target as Function);
     }
-    if (utils.isParameterDecorator(decorator, target, key, value)) {
+    if (utils.isParameterDecorator(decorator, arguments)) {
       return utils.decorateParameter(test, decorator, target, key, value as number);
     }
-    if (utils.isPropertyDecorator(decorator, target, key, value)) {
+    if (utils.isPropertyDecorator(decorator, arguments)) {
       return utils.decorateProperty(test, decorator, target, key);
     }
-    if (utils.isMethodDecorator(decorator, target, key, value)) {
+    if (utils.isMethodDecorator(decorator, arguments)) {
       return utils.decorateMethod(test, decorator, target, key, value as PropertyDescriptor);
     }
+    throw new Error('hogehoge');
     return null;
   }
 }

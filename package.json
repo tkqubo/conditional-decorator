@@ -28,6 +28,7 @@
     "espower-typescript": "^1.0.0",
     "mocha": "^2.3.3",
     "power-assert": "^1.1.0",
+    "sinon": "^1.17.1",
     "tsd": "^0.6.5"
   }
 }
