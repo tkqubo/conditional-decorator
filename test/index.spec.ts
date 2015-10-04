@@ -1,9 +1,15 @@
 import * as assert from 'power-assert';
-import { index } from '../src/index';
+import { conditional } from '../src/index';
+
+class Hoge {
+    @conditional('33', null)
+    method() {
+    }
+}
 
 describe('index', () => {
     it('()', () => {
         assert(true);
-        assert(index() == 'Hello world');
     });
 });
+

@@ -1,3 +1,3 @@
-export function index() {
-    return 'Hello world';
-}
+export { default as conditional } from './conditional';
+//export default { conditional };
+
