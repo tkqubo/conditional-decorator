@@ -15,7 +15,7 @@
     "istanbul": "istanbul cover _mocha -- --compilers ts:espower-typescript/guess test/*.spec.ts",
     "istanbul:watch": "istanbul cover node_modules/.bin/_mocha -- --compilers ts:espower-typescript/guess test/*.spec.ts -w",
     "codeclimate": "codeclimate-test-reporter < coverage/lcov.info",
-    "lint": "tslint -c tslint.json {test,src}/*.ts",
+    "lint": "tslint -c tslint.json test/*.ts src/*.ts",
     "prepublish": "npm run build"
   },
   "repository": {
