@@ -1,4 +1,5 @@
 # Conditional Decorator
+[![npm version](https://badge.fury.io/js/conditional-decorator.svg)](http://badge.fury.io/js/conditional-decorator)
 [![Build Status](https://travis-ci.org/tkqubo/conditional-decorator.svg?branch=master)](https://travis-ci.org/tkqubo/conditional-decorator)
 ![David](https://david-dm.org/tkqubo/conditional-decorator.svg)
 [![Test Coverage](https://codeclimate.com/github/tkqubo/conditional-decorator/badges/coverage.svg)](https://codeclimate.com/github/tkqubo/conditional-decorator/coverage)
