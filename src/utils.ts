@@ -37,34 +37,3 @@ export function isMethodDecorator(decorator: Function, args: IArguments): decora
   return getDecoratorTypeFromArguments(args) == DecoratorType.MethodDecorator;
 }
 
-export function decorateClass(test: any, decorator: ClassDecorator, clazz: Function): Function|void {
-  let shouldDecorate = typeof test === 'function' ? test(clazz) : test;
-  if (shouldDecorate && decorator) {
-    return decorator(clazz);
-  }
-
-  return clazz;
-}
-
-export function decorateParameter(test: any, decorator: ParameterDecorator, target: Object, key: string|symbol, index: number): void  {
-  let shouldDecorate = typeof test === 'function' ? test(target, key, index) : test;
-  if (shouldDecorate && decorator) {
-    decorator(target, key, index);
-  }
-}
-
-export function decorateProperty(test: any, decorator: PropertyDecorator, target: Object, key: string|symbol): void {
-  let shouldDecorate = typeof test === 'function' ? test(target, key) : test;
-  if (shouldDecorate && decorator) {
-    decorator(target, key);
-  }
-}
-
-export function decorateMethod(test: any, decorator: MethodDecorator, target: Object, key: string|symbol, desc: PropertyDescriptor): PropertyDescriptor|void {
-  let shouldDecorate = typeof test === 'function' ? test(target, key, desc) : test;
-  if (shouldDecorate && decorator) {
-    return decorator(target, key, desc);
-  }
-
-  return desc;
-}

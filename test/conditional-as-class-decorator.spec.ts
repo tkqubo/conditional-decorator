@@ -52,7 +52,6 @@ describe('conditional', () => {
       });
     });
 
-
     describe('(test: (clazz?: Function) => boolean, decorator: ClassDecorator): ClassDecorator', () => {
       it('decorates if test function returns true', () => {
         assert(spyWithFunctionReturningTrue.callCount === 1);

@@ -15,18 +15,34 @@ function conditional(test: (target?: Object, key?: string|symbol, desc?: Propert
 function conditional(test: any, decorator: Function): any {
   return function (target: Object, key: string|symbol, value: any): any {
     if (utils.isClassDecorator(decorator, arguments)) {
-      return utils.decorateClass(test, decorator, target as Function);
+      let clazz = target as Function;
+      let shouldDecorate = typeof test === 'function' ? test(clazz) : test;
+      if (shouldDecorate && decorator) {
+        return decorator(clazz);
+      }
+      return clazz;
     }
     if (utils.isParameterDecorator(decorator, arguments)) {
-      return utils.decorateParameter(test, decorator, target, key, value as number);
+      let index = value as number;
+      let shouldDecorate = typeof test === 'function' ? test(target, key, index) : test;
+      if (shouldDecorate && decorator) {
+        decorator(target, key, index);
+      }
     }
     if (utils.isPropertyDecorator(decorator, arguments)) {
-      return utils.decorateProperty(test, decorator, target, key);
+      let shouldDecorate = typeof test === 'function' ? test(target, key) : test;
+      if (shouldDecorate && decorator) {
+        decorator(target, key);
+      }
     }
     if (utils.isMethodDecorator(decorator, arguments)) {
-      return utils.decorateMethod(test, decorator, target, key, value as PropertyDescriptor);
+      let desc = value as PropertyDescriptor;
+      let shouldDecorate = typeof test === 'function' ? test(target, key, desc) : test;
+      if (shouldDecorate && decorator) {
+        return decorator(target, key, desc);
+      }
+      return desc;
     }
-    return null;
   }
 }
 
