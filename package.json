@@ -23,7 +23,8 @@
     "url": "git+https://github.com/tkqubo/conditional-decorator.git"
   },
   "keywords": [
-    "JavaScript"
+    "JavaScript",
+    "TypeScript"
   ],
   "author": "tkqubo",
   "license": "MIT",
