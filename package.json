@@ -4,17 +4,18 @@
   "description": "Decorator's decorator for applying it on the target conditionally",
   "main": "dist/index.js",
   "scripts": {
+    "install": "tsd --config tsd.json reinstall --overwrite",
     "clean": "rm -rfv dist && rm -rfv src/*.js",
-    "build": "npm run clean && tsc && mkdir -pv dist && cp -v src/*.js dist/ && mv -v src/*.d.ts dist/",
+    "build": "npm run clean && npm run lint && tsc && mkdir -pv dist && cp -v src/*.js dist/ && mv -v src/*.d.ts dist/",
     "start": "npm run build",
     "test": "npm run build && npm run istanbul && npm run codeclimate",
+    "test:watch": "npm run build && npm run istanbul:watch",
     "test:mocha": "npm run build && npm run mocha",
     "mocha": "mocha --compilers ts:espower-typescript/guess test/*.spec.ts",
     "istanbul": "istanbul cover _mocha -- --compilers ts:espower-typescript/guess test/*.spec.ts",
     "istanbul:watch": "istanbul cover node_modules/.bin/_mocha -- --compilers ts:espower-typescript/guess test/*.spec.ts -w",
     "codeclimate": "codeclimate-test-reporter < coverage/lcov.info",
-    "test:watch": "npm run build && npm run istanbul:watch",
-    "install": "tsd --config tsd.json reinstall --overwrite",
+    "lint": "tslint -c tslint.json {test,src}/*.ts",
     "prepublish": "npm run build"
   },
   "repository": {
@@ -38,6 +39,7 @@
     "power-assert": "^1.1.0",
     "sinon": "^1.17.1",
     "tsd": "^0.6.5",
+    "tslint": "^2.5.1",
     "typescript": "^1.6.2"
   }
 }

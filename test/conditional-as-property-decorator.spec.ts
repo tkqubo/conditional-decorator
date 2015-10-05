@@ -3,9 +3,11 @@ import * as sinon from 'sinon';
 import { conditional } from '../src/index';
 
 function createPropertyDecorator(spy: Sinon.SinonSpy): PropertyDecorator {
+  'use strict';
   return function decorator(target?: Object, key?: string|symbol): void {
+    'use strict';
     spy.apply(spy, arguments);
-  }
+  };
 }
 
 const spy1 = sinon.spy();
@@ -31,6 +33,7 @@ class TargetClass2 {
 }
 
 function testProperty(target?: Object, key?: string|symbol): boolean {
+  'use strict';
   return key === 'name';
 }
 

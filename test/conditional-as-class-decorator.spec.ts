@@ -3,6 +3,7 @@ import * as sinon from 'sinon';
 import { conditional } from '../src/index';
 
 function createClassDecorator(name: string, value: string): (clazz: Function) => Function {
+  'use strict';
   return clazz => {
     clazz.prototype[name] = value;
     return clazz;
@@ -24,6 +25,7 @@ class ClazzSpiedWithFalse {
 }
 
 function checkClassName(clazz: Function): boolean {
+  'use strict';
   return (<any>clazz).name === 'ClassSpiedWithFunctionReturningTrue';
 }
 let statusDecorator2 = createClassDecorator('status', 'status 2');

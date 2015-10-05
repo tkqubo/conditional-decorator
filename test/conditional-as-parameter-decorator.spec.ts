@@ -3,9 +3,11 @@ import * as sinon from 'sinon';
 import { conditional } from '../src/index';
 
 function createParameterDecorator(spy: Sinon.SinonSpy): ParameterDecorator {
+  'use strict';
   return function decorator(target: Object, propertyKey: string|symbol, parameterIndex: number): void {
+    'use strict';
     spy.apply(spy, arguments);
-  }
+  };
 }
 const spy1 = sinon.spy();
 const decor1 = createParameterDecorator(spy1);
@@ -21,21 +23,25 @@ const spy6 = sinon.spy();
 const decor6 = createParameterDecorator(spy6);
 
 function testParameter(target: Object, propertyKey: string|symbol, parameterIndex: number): boolean {
+  'use strict';
   return propertyKey === 'methodOk' && parameterIndex === 1;
 }
 
 class TargetClass {
-  method1(
-      @conditional(true, decor1) param1: number,
-      @conditional(false, decor2) param2: string) { }
+  method1(@conditional(true, decor1) param1: number,
+          @conditional(false, decor2) param2: string) {
+    return;
+  }
 
-  methodOk(
-      @conditional(testParameter, decor3) param1: number,
-      @conditional(testParameter, decor4) param2: string) { }
+  methodOk(@conditional(testParameter, decor3) param1: number,
+           @conditional(testParameter, decor4) param2: string) {
+    return;
+  }
 
-  methodNg(
-      @conditional(testParameter, decor5) param1: number,
-      @conditional(testParameter, decor6) param2: string) { }
+  methodNg(@conditional(testParameter, decor5) param1: number,
+           @conditional(testParameter, decor6) param2: string) {
+    return;
+  }
 }
 
 describe('conditional', () => {
@@ -52,19 +58,21 @@ describe('conditional', () => {
       });
     });
 
-    describe('(test: (target?: Object, key?: string|symbol, index?: number) => boolean, decorator: ParameterDecorator): ParameterDecorator', () => {
-      it('decorates if test function returns true', () => {
-        assert(spy4.callCount === 1);
-        assert(spy4.getCall(0).args[0] === TargetClass.prototype);
-        assert(spy4.getCall(0).args[1] === 'methodOk');
-        assert(spy4.getCall(0).args[2] === 1);
+    describe(
+      '(test: (target?: Object, key?: string|symbol, index?: number) => boolean, decorator: ParameterDecorator): ParameterDecorator',
+      () => {
+        it('decorates if test function returns true', () => {
+          assert(spy4.callCount === 1);
+          assert(spy4.getCall(0).args[0] === TargetClass.prototype);
+          assert(spy4.getCall(0).args[1] === 'methodOk');
+          assert(spy4.getCall(0).args[2] === 1);
+        });
+        it('doesn\'t decorate if test function returns false', () => {
+          assert(spy3.callCount === 0);
+          assert(spy5.callCount === 0);
+          assert(spy6.callCount === 0);
+        });
       });
-      it('doesn\'t decorate if test function returns false', () => {
-        assert(spy3.callCount === 0);
-        assert(spy5.callCount === 0);
-        assert(spy6.callCount === 0);
-      });
-    });
   });
 });
 

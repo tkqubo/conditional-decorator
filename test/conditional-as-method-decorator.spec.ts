@@ -7,6 +7,7 @@ enum PropertyType {
 }
 
 function getDecoratee<T>(type: PropertyType, descriptor: TypedPropertyDescriptor<T>): any {
+  'use strict';
   switch (type) {
     case PropertyType.Get:
       return descriptor.get;
@@ -20,6 +21,7 @@ function getDecoratee<T>(type: PropertyType, descriptor: TypedPropertyDescriptor
 }
 
 function setDecoratee<T>(type: PropertyType, descriptor: TypedPropertyDescriptor<T>, decoratee: any): any {
+  'use strict';
   switch (type) {
     case PropertyType.Get:
       descriptor.get = decoratee;
@@ -30,11 +32,19 @@ function setDecoratee<T>(type: PropertyType, descriptor: TypedPropertyDescriptor
     case PropertyType.Value:
       descriptor.value = decoratee;
       return;
+    default:
+      return;
   }
 }
 
-function createSideEffectMethodDecorator(applicationSpy: Sinon.SinonSpy, invocationSpy: Sinon.SinonSpy, type: PropertyType): MethodDecorator {
-  return function <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>): TypedPropertyDescriptor<T> {
+function createSideEffectMethodDecorator(applicationSpy: Sinon.SinonSpy,
+                                         invocationSpy: Sinon.SinonSpy,
+                                         type: PropertyType): MethodDecorator {
+  'use strict';
+  return function <T>(target: Object,
+                      propertyKey: string|symbol,
+                      descriptor: TypedPropertyDescriptor<T>): TypedPropertyDescriptor<T> {
+    'use strict';
     applicationSpy.apply(applicationSpy, arguments);
     let decoratee = getDecoratee(type, descriptor);
     setDecoratee(type, descriptor, (...args: any[]) => {
@@ -42,10 +52,11 @@ function createSideEffectMethodDecorator(applicationSpy: Sinon.SinonSpy, invocat
       return decoratee.call(target, ...args);
     });
     return descriptor;
-  }
+  };
 }
 
 function testMethodName(target?: Object, key?: string|symbol, desc?: PropertyDescriptor): boolean {
+  'use strict';
   return key === 'decoratableMethod';
 }
 
@@ -229,36 +240,38 @@ describe('conditional', () => {
       });
     });
 
-    describe('(test: (target?: Object, key?: string|symbol, desc?: PropertyDescriptor) => boolean, decorator: MethodDecorator): MethodDecorator', () => {
-      it('decorates if test function returns true', () => {
-        assert(applicationSpy3.callCount === 1);
-        assert(applicationSpy3.getCall(0).args[0] === TargetClass.prototype);
-        assert(applicationSpy3.getCall(0).args[1] === 'decoratableMethod');
-        assert(invocationSpy3.callCount === 0);
-        assert(instanceMethodSpy3.callCount === 0);
+    describe(
+      '(test: (target?: Object, key?: string|symbol, desc?: PropertyDescriptor) => boolean, decorator: MethodDecorator): MethodDecorator',
+      () => {
+        it('decorates if test function returns true', () => {
+          assert(applicationSpy3.callCount === 1);
+          assert(applicationSpy3.getCall(0).args[0] === TargetClass.prototype);
+          assert(applicationSpy3.getCall(0).args[1] === 'decoratableMethod');
+          assert(invocationSpy3.callCount === 0);
+          assert(instanceMethodSpy3.callCount === 0);
 
-        new TargetClass().decoratableMethod('hello');
-        assert(invocationSpy3.callCount === 1);
-        assert(invocationSpy3.getCall(0).args.length === 1);
-        assert(invocationSpy3.getCall(0).args[0] === 'hello');
-        assert(instanceMethodSpy3.callCount === 1);
-        assert(instanceMethodSpy3.getCall(0).args.length === 1);
-        assert(instanceMethodSpy3.getCall(0).args[0] === 'hello');
+          new TargetClass().decoratableMethod('hello');
+          assert(invocationSpy3.callCount === 1);
+          assert(invocationSpy3.getCall(0).args.length === 1);
+          assert(invocationSpy3.getCall(0).args[0] === 'hello');
+          assert(instanceMethodSpy3.callCount === 1);
+          assert(instanceMethodSpy3.getCall(0).args.length === 1);
+          assert(instanceMethodSpy3.getCall(0).args[0] === 'hello');
+        });
+
+        it('doesn\'t decorate if test function returns false', () => {
+          assert(applicationSpy4.callCount === 0);
+          assert(invocationSpy4.callCount === 0);
+          assert(instanceMethodSpy4.callCount === 0);
+
+          new TargetClass().undecoratableMethod('world');
+          assert(applicationSpy4.callCount === 0);
+          assert(invocationSpy4.callCount === 0);
+          assert(instanceMethodSpy4.callCount === 1);
+          assert(instanceMethodSpy4.getCall(0).args.length === 1);
+          assert(instanceMethodSpy4.getCall(0).args[0] === 'world');
+        });
       });
-
-      it('doesn\'t decorate if test function returns false', () => {
-        assert(applicationSpy4.callCount === 0);
-        assert(invocationSpy4.callCount === 0);
-        assert(instanceMethodSpy4.callCount === 0);
-
-        new TargetClass().undecoratableMethod('world');
-        assert(applicationSpy4.callCount === 0);
-        assert(invocationSpy4.callCount === 0);
-        assert(instanceMethodSpy4.callCount === 1);
-        assert(instanceMethodSpy4.getCall(0).args.length === 1);
-        assert(instanceMethodSpy4.getCall(0).args[0] === 'world');
-      });
-    });
   });
 });
 
