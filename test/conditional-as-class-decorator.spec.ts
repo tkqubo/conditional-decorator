@@ -39,12 +39,34 @@ class ClassSpiedWithFunctionReturningFalse {
   status: string;
 }
 
+let deepDecorator = createClassDecorator('status', 'yes');
+let deepSpy = sinon.spy(deepDecorator);
+@conditional(
+  true,
+  conditional(
+    true,
+    conditional(
+      true,
+      conditional(
+        true,
+        deepSpy
+      )
+    )
+  )
+)
+class HeavilyDecoratedClass {
+  status: string;
+}
+
 describe('conditional', () => {
   describe('as class decorator', () => {
     describe('(test: boolean, decorator: ClassDecorator) => ClassDecorator', () => {
       it('decorates if test is truthy', () => {
         assert(spyWithTrue.callCount === 1);
         assert(new ClazzSpiedWithTrue().status === 'status 1');
+
+        assert(deepSpy.callCount === 1);
+        assert(new HeavilyDecoratedClass().status === 'yes');
       });
       it('doesn\'t decorate if test is falsy', () => {
         assert(spyWithFalse.callCount === 0);
