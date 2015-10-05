@@ -1,7 +1,12 @@
 npm-debug.log*
 node_modules
 typings
-.idea
+
+coverage
 dist
 
+.idea
+
 src/*.js
+test/*.js
+test/*.d.ts

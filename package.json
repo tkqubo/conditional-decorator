@@ -7,8 +7,12 @@
     "clean": "rm -rfv dist && rm -rfv src/*.js",
     "build": "npm run clean && tsc && mkdir -pv dist && cp -v src/*.js dist/ && mv -v src/*.d.ts dist/",
     "start": "npm run build",
-    "test": "npm run build && mocha --compilers ts:espower-typescript/guess test/*.spec.ts",
-    "test:watch": "npm run build && mocha --compilers ts:espower-typescript/guess test/*.spec.ts -w",
+    "test": "npm run build && npm run istanbul",
+    "test:mocha": "npm run build && npm run mocha",
+		"mocha": "mocha --compilers ts:espower-typescript/guess test/*.spec.ts",
+		"istanbul": "istanbul cover _mocha -- --compilers ts:espower-typescript/guess test/*.spec.ts",
+		"istanbul:watch": "istanbul cover node_modules/.bin/_mocha -- --compilers ts:espower-typescript/guess test/*.spec.ts -w",
+    "test:watch": "npm run build && npm run istanbul:watch",
     "install": "tsd --config tsd.json reinstall --overwrite",
     "prepublish": "npm run build"
   },
@@ -27,6 +31,7 @@
   "homepage": "https://github.com/tkqubo/conditional-decorator#readme",
   "devDependencies": {
     "espower-typescript": "^1.0.0",
+    "istanbul": "^0.3.21",
     "mocha": "^2.3.3",
     "power-assert": "^1.1.0",
     "sinon": "^1.17.1",
