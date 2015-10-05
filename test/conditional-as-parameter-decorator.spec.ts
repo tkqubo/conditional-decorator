@@ -3,7 +3,9 @@ import * as sinon from 'sinon';
 import { conditional } from '../src/index';
 
 function createParameterDecorator(spy: Sinon.SinonSpy): ParameterDecorator {
-  return (target: Object, propertyKey: string|symbol, parameterIndex: number) => spy.apply(spy, arguments);
+  return function decorator(target: Object, propertyKey: string|symbol, parameterIndex: number): void {
+    spy.apply(spy, arguments);
+  }
 }
 const spy1 = sinon.spy();
 const decor1 = createParameterDecorator(spy1);

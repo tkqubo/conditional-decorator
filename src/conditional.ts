@@ -3,11 +3,11 @@ import * as utils from './utils';
 function conditional(test: boolean, decorator: ClassDecorator): ClassDecorator;
 function conditional(test: (clazz?: Function) => boolean, decorator: ClassDecorator): ClassDecorator;
 
-function conditional(test: boolean, decorator: ParameterDecorator): ParameterDecorator;
-function conditional(test: (target?: Object, key?: string|symbol, index?: number) => boolean, decorator: ParameterDecorator): ParameterDecorator;
-
 function conditional(test: boolean, decorator: PropertyDecorator): PropertyDecorator;
 function conditional(test: (target?: Object, key?: string|symbol) => boolean, decorator: PropertyDecorator): PropertyDecorator;
+
+function conditional(test: boolean, decorator: ParameterDecorator): ParameterDecorator;
+function conditional(test: (target?: Object, key?: string|symbol, index?: number) => boolean, decorator: ParameterDecorator): ParameterDecorator;
 
 function conditional(test: boolean, decorator: MethodDecorator): MethodDecorator;
 function conditional(test: (target?: Object, key?: string|symbol, desc?: PropertyDescriptor) => boolean, decorator: MethodDecorator): MethodDecorator;

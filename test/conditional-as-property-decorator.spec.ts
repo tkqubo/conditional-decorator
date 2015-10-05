@@ -3,11 +3,13 @@ import * as sinon from 'sinon';
 import { conditional } from '../src/index';
 
 function createPropertyDecorator(spy: Sinon.SinonSpy): PropertyDecorator {
-  return (target?: Object, key?: string|symbol) => spy.apply(spy, arguments);
+  return function decorator(target?: Object, key?: string|symbol): void {
+    spy.apply(spy, arguments);
+  }
 }
 
 const spy1 = sinon.spy();
-const decor1 = createPropertyDecorator(spy1);
+const decor1: PropertyDecorator = createPropertyDecorator(spy1);
 const spy2 = sinon.spy();
 const decor2 = createPropertyDecorator(spy2);
 
