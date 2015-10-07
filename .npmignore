@@ -2,6 +2,7 @@
 src
 test
 typings
+coverage
 .travis.yml
 tsconfig.json
 tsd.json
