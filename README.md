@@ -35,7 +35,7 @@ class Foo {
 
 ## API
 
-*TBD*
+You can read [TypeDoc](http://typedoc.io/)-generated documentation [here](http://tkqubo.github.io/conditional-decorator/)
 
 ## Using with TypeScript
 
