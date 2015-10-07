@@ -1,11 +1,27 @@
+export interface ClassDecorator {
+  <TFunction extends Function>(target: TFunction): TFunction|void;
+}
+
+export interface PropertyDecorator {
+  (target: Object, propertyKey: string|symbol): void;
+}
+
+export interface MethodDecorator {
+  <T>(target: Object, propertyKey: string|symbol, descriptor: TypedPropertyDescriptor<T>): TypedPropertyDescriptor<T>|void;
+}
+
+export interface ParameterDecorator {
+  (target: Object, propertyKey: string|symbol, parameterIndex: number): void;
+}
+
 /**
  * Enum for decorator type
  */
 export enum DecoratorType {
-  ClassDecorator,
-  ParameterDecorator,
-  PropertyDecorator,
-  MethodDecorator,
+  Class,
+  Parameter,
+  Property,
+  Method,
   None,
 }
 
@@ -23,13 +39,13 @@ export function getDecoratorTypeFromArguments(args: IArguments): DecoratorType {
   let kind: string = typeof (args.length === 1 ? args[0] : args[2]);
   switch (kind) {
     case 'function':
-      return DecoratorType.ClassDecorator;
+      return DecoratorType.Class;
     case 'number':
-      return DecoratorType.ParameterDecorator;
+      return DecoratorType.Parameter;
     case 'undefined':
-      return DecoratorType.PropertyDecorator;
+      return DecoratorType.Property;
     case 'object':
-      return DecoratorType.MethodDecorator;
+      return DecoratorType.Method;
     default:
       return DecoratorType.None;
   }
@@ -43,7 +59,7 @@ export function getDecoratorTypeFromArguments(args: IArguments): DecoratorType {
  */
 export function isClassDecorator(decorator: Function, args: IArguments): decorator is ClassDecorator {
   'use strict';
-  return getDecoratorTypeFromArguments(args) === DecoratorType.ClassDecorator;
+  return getDecoratorTypeFromArguments(args) === DecoratorType.Class;
 }
 
 /**
@@ -54,7 +70,7 @@ export function isClassDecorator(decorator: Function, args: IArguments): decorat
  */
 export function isParameterDecorator(decorator: Function, args: IArguments): decorator is ParameterDecorator {
   'use strict';
-  return getDecoratorTypeFromArguments(args) === DecoratorType.ParameterDecorator;
+  return getDecoratorTypeFromArguments(args) === DecoratorType.Parameter;
 }
 
 /**
@@ -65,7 +81,7 @@ export function isParameterDecorator(decorator: Function, args: IArguments): dec
  */
 export function isPropertyDecorator(decorator: Function, args: IArguments): decorator is PropertyDecorator {
   'use strict';
-  return getDecoratorTypeFromArguments(args) === DecoratorType.PropertyDecorator;
+  return getDecoratorTypeFromArguments(args) === DecoratorType.Property;
 }
 
 /**
@@ -76,6 +92,6 @@ export function isPropertyDecorator(decorator: Function, args: IArguments): deco
  */
 export function isMethodDecorator(decorator: Function, args: IArguments): decorator is MethodDecorator {
   'use strict';
-  return getDecoratorTypeFromArguments(args) === DecoratorType.MethodDecorator;
+  return getDecoratorTypeFromArguments(args) === DecoratorType.Method;
 }
 

@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "install": "tsd --config tsd.json reinstall --overwrite",
-    "clean": "rm -rfv dist && rm -rfv src/*.js",
+    "clean": "rm -rfv dist && rm -rfv src/*.{js,d.ts}",
     "build": "npm run clean && npm run lint && tsc && npm run dist && npm run docs",
     "dist": "mkdir -pv dist && cp -v src/*.js dist/ && mv -v src/*.d.ts dist/",
     "start": "npm run build",
@@ -17,7 +17,7 @@
     "istanbul:watch": "istanbul cover node_modules/.bin/_mocha -- --compilers ts:espower-typescript/guess test/*.spec.ts -w",
     "codeclimate": "codeclimate-test-reporter < coverage/lcov.info",
     "lint": "tslint -c tslint.json test/*.ts src/*.ts",
-    "docs": "typedoc --out docs --module commonjs src",
+    "docs": "typedoc --out docs --module commonjs src/",
     "prepublish": "npm run build"
   },
   "repository": {

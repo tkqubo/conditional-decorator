@@ -3,18 +3,18 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>conditional-decorator</title>
+	<title>MethodDecorator | conditional-decorator</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-	<script src="assets/js/modernizr.js"></script>
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<script src="../assets/js/modernizr.js"></script>
 </head>
 <body>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">conditional-decorator</a>
+					<a href="../index.html" class="title">conditional-decorator</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,90 +54,121 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="globals.html">Globals</a>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/_utils_.html">&quot;utils&quot;</a>
+				</li>
+				<li>
+					<a href="_utils_.methoddecorator.html">MethodDecorator</a>
 				</li>
 			</ul>
-			<h1> conditional-decorator</h1>
+			<h1>Interface MethodDecorator</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<h1 id="conditional-decorator">Conditional Decorator</h1>
-				<p><a href="http://badge.fury.io/js/conditional-decorator"><img src="https://badge.fury.io/js/conditional-decorator.svg" alt="npm version"></a>
-					<a href="https://travis-ci.org/tkqubo/conditional-decorator"><img src="https://travis-ci.org/tkqubo/conditional-decorator.svg?branch=master" alt="Build Status"></a>
-					<img src="https://david-dm.org/tkqubo/conditional-decorator.svg" alt="David">
-					<a href="https://codeclimate.com/github/tkqubo/conditional-decorator/coverage"><img src="https://codeclimate.com/github/tkqubo/conditional-decorator/badges/coverage.svg" alt="Test Coverage"></a>
-					<a href="https://codeclimate.com/github/tkqubo/conditional-decorator"><img src="https://codeclimate.com/github/tkqubo/conditional-decorator/badges/gpa.svg" alt="Code Climate"></a>
-				<a href="http://doge.mit-license.org"><img src="http://img.shields.io/:license-mit-blue.svg" alt="License"></a></p>
-				<p>A decorator which can wrap other decorator</p>
-				<h2 id="installation">Installation</h2>
-				<pre><code class="lang-sh">npm install conditional-decorator
-</code></pre>
-				<h2 id="usage">Usage</h2>
-				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { conditional } <span class="hljs-keyword">from</span> <span class="hljs-string">'conditional-decorator'</span>;
-<span class="hljs-keyword">import</span> { logger } <span class="hljs-keyword">from</span> <span class="hljs-string">'./logger'</span>;
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> </span>{
-    @logger
-    bar() {
-        <span class="hljs-comment">// ...</span>
-    }
-
-    @conditional(__DEBUG__, logger)
-    baz() {
-        <span class="hljs-comment">// ...</span>
-    }
-}
-</code></pre>
-				<h2 id="api">API</h2>
-				<h3 id="for-class-decoration">For Class Decoration</h3>
-				<pre><code class="lang-js">
-</code></pre>
-				<h3 id="for-property-decoration">For Property Decoration</h3>
-				<h3 id="for-method-decoration">For Method Decoration</h3>
-				<h3 id="for-method-parameter-decoration">For Method Parameter Decoration</h3>
-				<p>###
-				<em>TBD</em></p>
-				<h2 id="using-with-typescript">Using with TypeScript</h2>
-				<p><em>TBD</em></p>
-				<h2 id="todo">Todo</h2>
-				<ul>
-					<li>Test for:<ul>
-							<li>Object Literal Method Declaration</li>
-							<li>Object Literal Accessor Declaration</li>
-						</ul>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">MethodDecorator</span>
 					</li>
 				</ul>
-				<p>Both are unavailable in TypeScript 1.6.2, so test should be done in Babel with <code>es6.decorators</code> option</p>
-				<h2 id="references">References</h2>
-				<ul>
-					<li><a href="https://github.com/wycats/javascript-decorators">https://github.com/wycats/javascript-decorators</a></li>
-					<li><a href="https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841">https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841</a></li>
+			</section>
+			<section class="tsd-panel">
+				<h3 class="tsd-before-signature">Callable</h3>
+				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">__call&lt;T&gt;<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span>, descriptor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TypedPropertyDescriptor</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TypedPropertyDescriptor</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span></li>
 				</ul>
-			</div>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/tkqubo/conditional-decorator/blob/master/src/utils.ts#L9">utils.ts:9</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-type-parameters-title">Type parameters</h4>
+						<ul class="tsd-type-parameters">
+							<li>
+								<h4>T</h4>
+							</li>
+						</ul>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>target: <span class="tsd-signature-type">Object</span></h5>
+							</li>
+							<li>
+								<h5>propertyKey: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+							</li>
+							<li>
+								<h5>descriptor: <span class="tsd-signature-type">TypedPropertyDescriptor</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TypedPropertyDescriptor</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
+							<span class="tsd-signature-symbol"> | </span>
+							<span class="tsd-signature-type">void</span>
+						</h4>
+					</li>
+				</ul>
+			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
+						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_conditional_.html">"conditional"</a>
+						<a href="../modules/_conditional_.html">"conditional"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_index_.html">"index"</a>
+						<a href="../modules/_index_.html">"index"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_utils_.html">"utils"</a>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/_utils_.html">"utils"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="../enums/_utils_.decoratortype.html" class="tsd-kind-icon">Decorator<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_utils_.classdecorator.html" class="tsd-kind-icon">Class<wbr>Decorator</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_utils_.methoddecorator.html" class="tsd-kind-icon">Method<wbr>Decorator</a>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_utils_.parameterdecorator.html" class="tsd-kind-icon">Parameter<wbr>Decorator</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_utils_.propertydecorator.html" class="tsd-kind-icon">Property<wbr>Decorator</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_utils_.html#getdecoratortypefromarguments" class="tsd-kind-icon">get<wbr>Decorator<wbr>Type<wbr>From<wbr>Arguments</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_utils_.html#isclassdecorator" class="tsd-kind-icon">is<wbr>Class<wbr>Decorator</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_utils_.html#ismethoddecorator" class="tsd-kind-icon">is<wbr>Method<wbr>Decorator</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_utils_.html#isparameterdecorator" class="tsd-kind-icon">is<wbr>Parameter<wbr>Decorator</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_utils_.html#ispropertydecorator" class="tsd-kind-icon">is<wbr>Property<wbr>Decorator</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -206,7 +237,7 @@
 	<p>Generated using <a href="http://typedoc.io" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

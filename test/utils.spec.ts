@@ -52,26 +52,26 @@ function yetAnotherNonDecorator(arg1: string, arg2: string, arg3: string): void 
 }
 
 const DecoratorTypes = [
-  DecoratorType.ClassDecorator,
-  DecoratorType.MethodDecorator,
-  DecoratorType.ParameterDecorator,
-  DecoratorType.PropertyDecorator,
+  DecoratorType.Class,
+  DecoratorType.Method,
+  DecoratorType.Parameter,
+  DecoratorType.Property,
   DecoratorType.None
 ];
 
 function invokeDecorator(type: DecoratorType) {
   'use strict';
   switch (type) {
-    case DecoratorType.ClassDecorator:
+    case DecoratorType.Class:
       classDecorator(Clazz);
       return;
-    case DecoratorType.MethodDecorator:
+    case DecoratorType.Method:
       methodDecorator(Clazz.prototype, 'method', Object.getOwnPropertyDescriptor(Clazz.prototype, 'method'));
       return;
-    case DecoratorType.ParameterDecorator:
+    case DecoratorType.Parameter:
       parameterDecorator(Clazz.prototype, 'method', 0);
       return;
-    case DecoratorType.PropertyDecorator:
+    case DecoratorType.Property:
       propertyDecorator(Clazz.prototype, 'method');
       return;
     case DecoratorType.None:
@@ -85,13 +85,13 @@ function invokeDecorator(type: DecoratorType) {
 function getDecoratorName(type: DecoratorType): string {
   'use strict';
   switch (type) {
-    case DecoratorType.ClassDecorator:
-      return 'ClassDecorator';
-    case DecoratorType.MethodDecorator:
+    case DecoratorType.Class:
+      return 'Class';
+    case DecoratorType.Method:
       return 'MethodDecorator';
-    case DecoratorType.ParameterDecorator:
+    case DecoratorType.Parameter:
       return 'ParameterDecorator';
-    case DecoratorType.PropertyDecorator:
+    case DecoratorType.Property:
       return 'PropertyDecorator';
     case DecoratorType.None:
       return 'None';
@@ -103,13 +103,13 @@ function getDecoratorName(type: DecoratorType): string {
 function getDecoratorText(type: DecoratorType): string {
   'use strict';
   switch (type) {
-    case DecoratorType.ClassDecorator:
+    case DecoratorType.Class:
       return 'class decorator';
-    case DecoratorType.MethodDecorator:
+    case DecoratorType.Method:
       return 'method decorator';
-    case DecoratorType.ParameterDecorator:
+    case DecoratorType.Parameter:
       return 'method parameter decorator';
-    case DecoratorType.PropertyDecorator:
+    case DecoratorType.Property:
       return 'property decorator';
     case DecoratorType.None:
       return 'non-decorator';
@@ -121,13 +121,13 @@ function getDecoratorText(type: DecoratorType): string {
 function getDecorator(type: DecoratorType): Function {
   'use strict';
   switch (type) {
-    case DecoratorType.ClassDecorator:
+    case DecoratorType.Class:
       return classDecorator;
-    case DecoratorType.MethodDecorator:
+    case DecoratorType.Method:
       return methodDecorator;
-    case DecoratorType.ParameterDecorator:
+    case DecoratorType.Parameter:
       return parameterDecorator;
-    case DecoratorType.PropertyDecorator:
+    case DecoratorType.Property:
       return propertyDecorator;
     case DecoratorType.None:
       return nonDecorator;
@@ -161,22 +161,22 @@ describe('utils', () => {
     {
       target: isClassDecorator,
       name: 'isClassDecorator',
-      expected: [DecoratorType.ClassDecorator]
+      expected: [DecoratorType.Class]
     },
     {
       target: isMethodDecorator,
       name: 'isMethodDecorator',
-      expected: [DecoratorType.MethodDecorator]
+      expected: [DecoratorType.Method]
     },
     {
       target: isParameterDecorator,
       name: 'isParameterDecorator',
-      expected: [DecoratorType.ParameterDecorator]
+      expected: [DecoratorType.Parameter]
     },
     {
       target: isPropertyDecorator,
       name: 'isPropertyDecorator',
-      expected: [DecoratorType.PropertyDecorator]
+      expected: [DecoratorType.Property]
     }
   ];
   testSuitConfig.forEach(config => {
