@@ -4,6 +4,8 @@ node_js:
   - '0.12'
 script:
   - npm test
+after_success:
+  - git subtree push --prefix docs/ origin gh-pages
 notifications:
   slack:
     rooms:
