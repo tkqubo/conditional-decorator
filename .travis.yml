@@ -5,8 +5,13 @@ node_js:
 script:
   - npm test
 after_success:
-  - '[[ ! $(node -v) =~ v0.12 ]] && git subtree push --prefix docs/ origin gh-pages'
+  - git config credential.helper "store --file=.git/credentials"
+  - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+  - "[[ ! $(node -v) =~ v0.12 ]] && git push origin :gh-pages && git subtree push --prefix docs/ origin gh-pages"
 notifications:
   slack:
     rooms:
       secure: qTCVKPpkKuqKxOvrQ74/M3nBTDHdxUnVz8jucD1z5LtbarSoEAO6kB3jfam/ZSG2TWgS7XThpT/2i6v5EN3pwG3LaAuqaInNreFXvF6KIVCtr2L1griNx2E/rhzL7W9imIuVUKWCYcH1iiMttYJah/7p4EE9jtt5VbJIv1ta7f0BkEsh3zIOK2jL3nswjSp3QAiLsh1atdG/5ylyMHxOCiCm/+DWEvehmzDKKIT3a+56OAcd8P4eScxWImU3Fxpc38xfBfUiZoo9A+A/CoOLbTFbzcYwnD5UBPhkIuZWjnsXQ3nenOHfNCKJuHogvPrYPbhDiOBlGATxbe1Y234LEaGhiUPIgUOJbYA8RcE0GrkWSF8YMaWst7kt4nvja9HQzKTMPC5nTV0g4XBIO+mTzo/vriLCJVwPNNcChLu8XDVlgz7MIA+xvPCLLXAfYd4sraPrgibV2cnkXeodiClQKRrdZpdL9jLrlrbgXj6xQGtWPa18y8f8oMHtJgM/us+eTIbybawOr0RECy2+0Hhm/4ZzNj/qH5w6mMkh/oTZSw6pVFHC3NuN0qEzHxYxCjbXVRqaY+Cw5nBrt5ikVLlyvnX3qPnH1jObX1iR1CTHcYGj4riMPGX/CFhiwhEIbHqNBfXKc4weoS1EPuuqLDt8zc0wEIuCFx49gS7KC0ij63Y=
+env:
+  global:
+    secure: D+6YTw7afsks/mjPtUu3utW7ZTIKwdfw2HKOOPneksPc8PxgcR06xPGJH4sjGLNw1gdTkEz64uS6RMlJepa+eP/cZZKGSTyJPdGuhzoWAk4HNy7QUDE0oDZzdU7BTWcvdUu4ZUOzzuErYC0hoRl411oolriav16HcwygJbiI7FN3co2mrt0wo2BEfjSHqbp4OFJ40JziAqJFOHot3rsiWZ3cBsg0yXBOlLOxBUHuSxzztO9oMPauwrMPOGIWQjKPs4TfrUXn8WnUd2dYO1z7lM7cx2uDq9CoSc9jpeb/82Poh+y52uJpgaJyfQrSeZQMI90MtsvdAiUXwcCbLGJ0V8+ZRCDfgQwE0XCzM3KLvd6mRl6j9Hqy7zvGPXnh3+3Rl1DQZU2XkRF9br9l3Buk/AAlbBNjRfy4+P6/HaoqO7P/KtMxjJ6UjyYZHQOH1xtjGBPKHv92YC726YrML+vQNXkBWT1PgleORThFwslsB8ZJeglsXfw4RWM8j/g1MAVS1i73ZMzVSSMdrSem07DDRGhcnuUcacFHpEaIHAVDSVy8aWUB47tWUQrMAJdy92ecm98a1RW8BxvsCBEFmvcSYdOPdUw55IlFD/JWW2hf/pnPa4ok8GAQ4u7I7tHXS91zz5xrPOFx4dgD0/AgOx06Cm+IjRIxxd6h6fNIbfWE2sc=
