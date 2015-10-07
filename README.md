@@ -6,7 +6,7 @@
 [![Code Climate](https://codeclimate.com/github/tkqubo/conditional-decorator/badges/gpa.svg)](https://codeclimate.com/github/tkqubo/conditional-decorator)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 
-A decorator which can wrap any kind of decorator
+A decorator which can wrap other decorator
 
 ## Installation
 
@@ -26,7 +26,7 @@ class Foo {
 		// ...
 	}
 
-	@conditional(process.env.NODE_ENV === 'local', logger)
+	@conditional(__DEBUG__, logger)
 	baz() {
 		// ...
 	}
@@ -35,10 +35,16 @@ class Foo {
 
 ## API
 
-### 
 *TBD*
 
 ## Using with TypeScript
 
 *TBD*
 
+## Todo
+
+- Test for:
+ - Object Literal Method Declaration
+ - Object Literal Accessor Declaration
+ 
+Both are unavailable in TypeScript 1.6.2, so test should be done in Babel with `es6.decorators` option
