@@ -4,8 +4,7 @@
     "target": "es5",
     "noImplicitAny": true,
     "experimentalDecorators": true,
-    "outDir": ".",
-    "rootDir": "src",
+    "rootDir": ".",
     "declaration": true
   },
   "exclude": [
