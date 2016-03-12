@@ -1,8 +1,11 @@
+---
 engines:
-  eslint:
-    enabled: true
   tslint:
     enabled: true
-
+ratings:
+  paths:
+  - "**.ts"
 exclude_paths:
-  - node_modules
+- node_modules/**/*
+- test/**/*
+
