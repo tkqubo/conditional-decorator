@@ -6,9 +6,9 @@
   "scripts": {
     "install": "tsd --config tsd.json reinstall --overwrite",
     "clean": "rm -rfv dist && rm -rfv src/*.{js,d.ts}",
-    "build": "npm run clean && npm run lint && tsc && npm run dist && npm run docs",
+    "build": "npm run clean && tsc && npm run dist && npm run docs",
     "dist": "mkdir -pv dist && cp -v src/*.js dist/ && mv -v src/*.d.ts dist/",
-    "start": "npm run build",
+    "start": "npm run lint && npm run build",
     "test": "npm run build && npm run istanbul && npm run codeclimate",
     "test:watch": "npm run build && npm run istanbul:watch",
     "test:mocha": "npm run build && npm run mocha",
@@ -37,15 +37,15 @@
   "homepage": "https://github.com/tkqubo/conditional-decorator#readme",
   "devDependencies": {
     "codeclimate-test-reporter": "^0.3.0",
-    "espower-typescript": "^3.0.0",
+    "espower-typescript": "^5.0.1",
     "istanbul": "^0.4.2",
-    "mocha": "^2.3.4",
+    "mocha": "^3.0.2",
     "power-assert": "^1.2.0",
-    "remap-istanbul": "^0.5.1",
+    "remap-istanbul": "^0.6.4",
     "sinon": "^1.17.2",
     "tsd": "^0.6.5",
     "tslint": "^3.2.2",
-    "typedoc": "^0.3.12",
-    "typescript": "^1.7.5"
+    "typedoc": "^0.4.4",
+    "typescript": "^1.8.10"
   }
 }
