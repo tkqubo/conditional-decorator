@@ -1,6 +1,6 @@
 {
   "name": "conditional-decorator",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Decorator's decorator for applying it on the target conditionally",
   "main": "dist/index.js",
   "scripts": {
