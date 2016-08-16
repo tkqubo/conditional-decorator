@@ -36,3 +36,4 @@ function conditional(test, decorator) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = conditional;
+//# sourceMappingURL=conditional.js.map
