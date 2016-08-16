@@ -4,9 +4,8 @@
   "description": "Decorator's decorator for applying it on the target conditionally",
   "main": "dist/index.js",
   "scripts": {
-    "install": "tsd --config tsd.json reinstall --overwrite",
     "clean": "rm -rfv dist && rm -rfv src/*.{js,d.ts}",
-    "build": "npm run clean && tsc && npm run dist && npm run docs",
+    "build": "npm run clean && tsd --config tsd.json reinstall --overwrite && tsc && npm run dist && npm run docs",
     "dist": "mkdir -pv dist && cp -v src/*.js dist/ && mv -v src/*.d.ts dist/",
     "start": "npm run lint && npm run build",
     "test": "npm run build && npm run istanbul && npm run codeclimate",
